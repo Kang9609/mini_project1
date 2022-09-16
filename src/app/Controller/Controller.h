@@ -1,0 +1,27 @@
+#ifndef __CONTROLLER_H__
+#define __CONTROLLER_H__
+
+#include <string>
+#include "Service.h"
+#include "ClockService.h"
+#include "DHT_data.h"
+#include "TempHumidService.h"
+
+class Controller
+{
+private:
+    int lightState;
+    Service *service;
+    ClockService *clockService;
+    TempHumidService * tempHumidService;
+
+
+public:
+    Controller(Service *serv, ClockService *clockServ, TempHumidService * tempHumidServ);
+    virtual ~Controller();
+    void updateEvent(std::string strBtn);
+    void updateTempHumid(DHT_Data dhtData);
+    void updateDistance(int distance);
+};
+
+#endif /* __CONTROLLER_H__ */
